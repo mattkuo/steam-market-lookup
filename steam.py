@@ -13,11 +13,20 @@ def search_items(app_id, item):
 
     result = {'success': True, 'items': []}
 
+    name = soup.select('.market_listing_nav > a')[0].text.strip()
+    
+    if name:
+        result['app_name'] = name
+
     for row in soup.find_all('div', class_='market_listing_row'):
-        print(row)
         price = row.find('span', class_='market_listing_price_with_fee').text.strip()
         item_id = clean_id(row['id'])
         result['items'].append({'id': item_id, 'price': price})
+
+    if not result['items']:
+        result['success'] = False
+        result['message'] = 'Item not found.'
+        del result['items']
 
     return jsonify(result)
 
