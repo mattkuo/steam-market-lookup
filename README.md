@@ -10,12 +10,12 @@ GET - Gets the 10 most recent item prices from the steam market
 
 ```JSON
 {
-  "success": ...
-  "app_name": ...,
+  "success": "...",
+  "app_name": "...",
   "items": [
     {
-      "id": ...,
-      "price": ...
+      "id": "...",
+      "price": "..."
     }
   ]
 }
